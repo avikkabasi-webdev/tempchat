@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TempChat — Anonymous Chat</title>
+  <meta name="description" content="Free anonymous temporary chat. No login required." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HOME SCREEN -->
+  <div id="screen-home" class="screen active">
+    <div class="glass-card center">
+      <div class="logo">💬 TempChat</div>
+      <p class="tagline">Anonymous. Temporary. Private.</p>
+      <button class="btn btn-primary" id="btn-random">⚡ Random Chat</button>
+      <button class="btn btn-secondary" id="btn-private">🔒 Private Room</button>
+      <button class="btn btn-ghost" id="btn-settings">⚙️ Settings</button>
+    </div>
+  </div>
+
+  <!-- WAITING SCREEN -->
+  <div id="screen-waiting" class="screen">
+    <div class="glass-card center">
+      <div class="spinner"></div>
+      <p class="status-text">Finding someone to chat with...</p>
+      <button class="btn btn-ghost" id="btn-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- PRIVATE ROOM SCREEN -->
+  <div id="screen-private" class="screen">
+    <div class="glass-card center">
+      <h2>🔒 Private Room</h2>
+      <p>Create a new room or join with a code</p>
+      <button class="btn btn-primary" id="btn-create-private">Create Room</button>
+      <div class="divider">OR</div>
+      <input type="text" id="input-room-code" placeholder="Enter room code..." maxlength="36" />
+      <button class="btn btn-secondary" id="btn-join-private">Join Room</button>
+      <button class="btn btn-ghost" id="btn-back-home">← Back</button>
+    </div>
+  </div>
+
+  <!-- PRIVATE CREATED SCREEN -->
+  <div id="screen-created" class="screen">
+    <div class="glass-card center">
+      <h2>✅ Room Created!</h2>
+      <p>Share this code with your friend:</p>
+      <div class="room-code" id="display-room-code"></div>
+      <button class="btn btn-primary" id="btn-copy-link">📋 Copy Link</button>
+      <p class="waiting-text">Waiting for your friend to join...</p>
+      <button class="btn btn-ghost" id="btn-cancel-private">Cancel</button>
+    </div>
+  </div>
+
+  <!-- CHAT SCREEN -->
+  <div id="screen-chat" class="screen">
+    <div class="chat-container">
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="header-left">
+          <div class="status-dot" id="status-dot"></div>
+          <span id="header-title">Connected</span>
+        </div>
+        <div class="header-right">
+          <button class="icon-btn" id="btn-report" title="Report">🚩</button>
+          <button class="icon-btn" id="btn-next">⏭ Next</button>
+          <button class="icon-btn" id="btn-end">✕</button>
+        </div>
+      </div>
+
+      <!-- Timer -->
+      <div class="chat-timer" id="chat-timer"></div>
+
+      <!-- Messages -->
+      <div class="messages" id="messages"></div>
+
+      <!-- Typing -->
+      <div class="typing-indicator" id="typing-indicator" style="display:none">
+        Partner is typing<span class="dots">...</span>
+      </div>
+
+      <!-- Input -->
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="msg-input"
+          placeholder="Type a message..."
+          maxlength="500"
+          autocomplete="off"
+        />
+        <button class="send-btn" id="btn-send">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS SCREEN -->
+  <div id="screen-settings" class="screen">
+    <div class="glass-card">
+      <div class="settings-header">
+        <button class="btn-ghost-sm" id="btn-back-settings">←</button>
+        <h2>⚙️ Settings</h2>
+      </div>
+      <div class="setting-item">
+        <span>🔔 Sound & Notifications</span>
+        <label class="toggle"><input type="checkbox" id="setting-sound" checked /><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <span>🌙 Dark Mode</span>
+        <label class="toggle"><input type="checkbox" id="setting-dark" checked /><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <span>⏭ Auto Next</span>
+        <label class="toggle"><input type="checkbox" id="setting-autonext" checked /><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <span>📡 Data Saver</span>
+        <label class="toggle"><input type="checkbox" id="setting-datasaver" /><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <span>⏱ Chat Timer (5 min)</span>
+        <label class="toggle"><input type="checkbox" id="setting-timer" checked /><span class="slider"></span></label>
+      </div>
+      <div class="privacy-links">
+        <a href="#" id="link-privacy">Privacy Policy</a>
+        <a href="#" id="link-terms">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="app.js"></script>
+</body>
+  </html>
